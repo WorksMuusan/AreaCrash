@@ -1,0 +1,230 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: atl_CrystalPanel
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 5cb3f266ae41a49a3bd29b182a6fff12, type: 3}
+    totalSpriteSurfaceArea: 391260
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: cfb19b1027efc4e0fb39eb06580f5dc0, type: 3}
+  - {fileID: 21300000, guid: d0830d506e31a42f1ad847dd071118e9, type: 3}
+  - {fileID: 21300000, guid: e441ce60361894b46822c5588c77811b, type: 3}
+  - {fileID: 21300000, guid: dad9fd80fdbd3465ba69bbaaf8cfe3f2, type: 3}
+  - {fileID: 21300000, guid: 3ae991d0aca614255a4345a7d699e2e4, type: 3}
+  - {fileID: 21300000, guid: 009eb2d07a0d54beda87bd545dd82d91, type: 3}
+  - {fileID: 21300000, guid: 89610bf031ac64d3a805860613fa7641, type: 3}
+  - {fileID: 21300000, guid: f81b49217b8854745a2977c4c9821a14, type: 3}
+  - {fileID: 21300000, guid: 6a2b784123ffd4c5f930dcec2546f98a, type: 3}
+  - {fileID: 21300000, guid: 0bfc0d41aaff847f7afd728f1f3e915d, type: 3}
+  - {fileID: 21300000, guid: 753c6e51ba7034857bd620939afcd341, type: 3}
+  - {fileID: 21300000, guid: 91084f51cddd749e8a1914d956081edc, type: 3}
+  - {fileID: 21300000, guid: faf41ca1e450145aabf07d3ded1cfad5, type: 3}
+  - {fileID: 21300000, guid: b21899e1156f84af08e416c4232d9a83, type: 3}
+  - {fileID: 21300000, guid: 7acb070267f434e04973deeab26eeb68, type: 3}
+  - {fileID: 21300000, guid: 3f1661525d5784d6c89349cc09e32137, type: 3}
+  - {fileID: 21300000, guid: 1aabb9828a5844f32aa03f69a42188a1, type: 3}
+  - {fileID: 21300000, guid: 2a35b453936104c6ea923ff1444df1ee, type: 3}
+  - {fileID: 21300000, guid: 030a16532d1b149c39dca6ff39937fa0, type: 3}
+  - {fileID: 21300000, guid: 8ec0e3c3c7db8444c913e66eaf797a6f, type: 3}
+  - {fileID: 21300000, guid: 576bffd3f58bf477c819723947ca6ed1, type: 3}
+  - {fileID: 21300000, guid: 727c4cf3f7ec54ac7aff4907ee2449b6, type: 3}
+  - {fileID: 21300000, guid: d3cd3f14138f246f789cb8580b8ea501, type: 3}
+  - {fileID: 21300000, guid: 14d20d3437e594a8d98d1de3e32b32c8, type: 3}
+  - {fileID: 21300000, guid: 133c9d9475dbd4728abd7eac17c2db32, type: 3}
+  - {fileID: 21300000, guid: 622559b4dcd774ce784531a9765fd7fd, type: 3}
+  - {fileID: 21300000, guid: 2d041db4eb6484b439483cf18d0c86df, type: 3}
+  - {fileID: 21300000, guid: f04448358fa0b439b9dfaf4de1e7fc5c, type: 3}
+  - {fileID: 21300000, guid: 12db5155b1b3a490684d3c9650dda47b, type: 3}
+  - {fileID: 21300000, guid: 69e30b65641e3427b89e6f5c1af7c6a2, type: 3}
+  - {fileID: 21300000, guid: 1109df65cb2bd413a8af209db06f1eb4, type: 3}
+  - {fileID: 21300000, guid: 5ad08b85a062d4ea8826bf2acd5f0c0a, type: 3}
+  - {fileID: 21300000, guid: 1047c816373264c80b3f92648dabb8c4, type: 3}
+  - {fileID: 21300000, guid: 5446a4a6a1225460780585b1bfbbaf4a, type: 3}
+  - {fileID: 21300000, guid: 7a5b44e6e4532405eb901b5f14da55c0, type: 3}
+  - {fileID: 21300000, guid: 7c63593729fe342938a40737a88bbfb1, type: 3}
+  - {fileID: 21300000, guid: bb2d0b57f69884146a600b2790de3883, type: 3}
+  - {fileID: 21300000, guid: d05b2667876064ee9b2c9e3f4b4030e4, type: 3}
+  - {fileID: 21300000, guid: 2ed049672b77d46419b5c8a483a5a58e, type: 3}
+  - {fileID: 21300000, guid: 12c0fc6741ce84a4781caf9bf5dc771d, type: 3}
+  - {fileID: 21300000, guid: 1ec57b878080843eb9b8c110e6d4b2bd, type: 3}
+  - {fileID: 21300000, guid: 8eab83d7b56fd4d9b8c10f4563ec54d5, type: 3}
+  - {fileID: 21300000, guid: d91a12e79356f4566801e3832cd6eee8, type: 3}
+  - {fileID: 21300000, guid: e8c6b7385f850446aaf72a725cfd55f7, type: 3}
+  - {fileID: 21300000, guid: b856276887bee4c198ea06e14059aae4, type: 3}
+  - {fileID: 21300000, guid: 0d16b0d88989e412ea633c1ed95b7bf0, type: 3}
+  - {fileID: 21300000, guid: dd80f2e8bd94249bda946773b0f1a264, type: 3}
+  - {fileID: 21300000, guid: 22fcbaf819c064c2aba17cdf291bb21c, type: 3}
+  - {fileID: 21300000, guid: d1b95d19bcb68477bb341ffb01ff44e4, type: 3}
+  - {fileID: 21300000, guid: 25fa034911a8943fcacbf55642fea95c, type: 3}
+  - {fileID: 21300000, guid: ea4027498839a4b20a9b04210c27eba4, type: 3}
+  - {fileID: 21300000, guid: 1345cc691d8c94a3681c958265be2988, type: 3}
+  - {fileID: 21300000, guid: cc606d79bb59d4b4dbe89121baaeaf86, type: 3}
+  - {fileID: 21300000, guid: 375d1eb9c6dd2487eab7e68159a151f8, type: 3}
+  - {fileID: 21300000, guid: 59bd4ec93bf8248598d5300ad0427442, type: 3}
+  - {fileID: 21300000, guid: 74795c1a43afd44039b91a06d7574f9c, type: 3}
+  - {fileID: 21300000, guid: 4665793adf0dc4c128dd47efd63fc886, type: 3}
+  - {fileID: 21300000, guid: 112bb04af238b4dddb730081f54ad47e, type: 3}
+  - {fileID: 21300000, guid: d038c64afa1694aa7af7d3070363d73d, type: 3}
+  - {fileID: 21300000, guid: 5c398f4a30dee490c9839ce0e28c4535, type: 3}
+  - {fileID: 21300000, guid: 089e525a43c6e434991035ed90771ae8, type: 3}
+  - {fileID: 21300000, guid: d175b17a6e0a544cab12434b759e5cb8, type: 3}
+  - {fileID: 21300000, guid: fca95c7a2be2842729ad857781a08e62, type: 3}
+  - {fileID: 21300000, guid: 7951fbba7e3b0452796b00666af2bb2e, type: 3}
+  - {fileID: 21300000, guid: 9e4f40ea2851544de8b17e8f4eb456ac, type: 3}
+  - {fileID: 21300000, guid: 0bc304ead42c94356b8a6233b6b9929e, type: 3}
+  - {fileID: 21300000, guid: 885ab2faef1ee4d668dc958b7f522d97, type: 3}
+  - {fileID: 21300000, guid: 0093ce0bec02540f5b8e8144cae66a07, type: 3}
+  - {fileID: 21300000, guid: 59a4711b038f44943b1eac7416a12b83, type: 3}
+  - {fileID: 21300000, guid: bad8182b752d5421daf13e8f5b1cd536, type: 3}
+  - {fileID: 21300000, guid: 04f20b2b2cb3941208cc01059215232e, type: 3}
+  - {fileID: 21300000, guid: cc2edc2b377384067ae713bac929ab59, type: 3}
+  - {fileID: 21300000, guid: a414b43bcd2564395b72d7d750ca0879, type: 3}
+  - {fileID: 21300000, guid: 08bef77b37b2845cb9b879a57338b5e3, type: 3}
+  - {fileID: 21300000, guid: 308f2b7b1c68b4f7fb40782986121e68, type: 3}
+  - {fileID: 21300000, guid: d6ed2d9b4fa26495a835108b2372601e, type: 3}
+  - {fileID: 21300000, guid: 4bdb20abdcbd6494eb3f8032cb65790e, type: 3}
+  - {fileID: 21300000, guid: fc23fcab08b304ab1a6aa0e9d939dc33, type: 3}
+  - {fileID: 21300000, guid: 7545adabc21f44055ae3611c6861b3ee, type: 3}
+  - {fileID: 21300000, guid: ad3697cb5926946be91eeba4f35cd2b8, type: 3}
+  - {fileID: 21300000, guid: 8d369f2cc4d9f4706b7197ed15636553, type: 3}
+  - {fileID: 21300000, guid: e10f444c67ccc46deb391646c5805de8, type: 3}
+  - {fileID: 21300000, guid: 49474e6cc3551459d8c6fc95935bd97f, type: 3}
+  - {fileID: 21300000, guid: a2ea258c1afaf4b809e0786291e00c9d, type: 3}
+  - {fileID: 21300000, guid: b501ba9c296f749538bbed00ccc5bc1a, type: 3}
+  - {fileID: 21300000, guid: b8be342d7375d47de83b6a0b01031ffa, type: 3}
+  - {fileID: 21300000, guid: 070ca52d518f04675b2449cebcd82b83, type: 3}
+  - {fileID: 21300000, guid: 7f46553d7f5354659826f7083f6fc4bc, type: 3}
+  - {fileID: 21300000, guid: 6966f73dce73b4d159485d4405ffa5e1, type: 3}
+  - {fileID: 21300000, guid: d692c44d299b545c69344de19a971278, type: 3}
+  - {fileID: 21300000, guid: bc55320ef315c4149872bdef0f59d02a, type: 3}
+  - {fileID: 21300000, guid: d4ec345e7e36f42dab901339c7e56c26, type: 3}
+  - {fileID: 21300000, guid: 7610a57ed63294896bcf184a9f51ca67, type: 3}
+  - {fileID: 21300000, guid: 9cff8b8fc7d634daeaa6c72f54d990a5, type: 3}
+  - {fileID: 21300000, guid: 115978af940244a02a7d943d19e4deeb, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - bgi_Tile_B_Edge_Line_H_Normal
+  - bgi_Tile_G_Edge_Full_Active
+  - bgi_Tile_P_Edge_Line_H_Active
+  - bgi_Tile_G_Edge_In_LT_Normal
+  - bgi_Tile_Y_Edge_In_LT_Normal
+  - img_Attribute_G
+  - bgi_Tile_B_Border_Line_Active
+  - bgi_Tile_Y_Edge_In_Active
+  - bgi_Tile_R_Edge_Line_H_Active
+  - bgi_Tile_R_Edge_In_Active
+  - bgi_Tile_P_Border_Line_Normal
+  - bgi_Tile_B_Border_Full_Normal
+  - bgi_Tile_P_Edge_In_LT_Normal
+  - bgi_Tile_P_Edge_Line_V_Active
+  - bgi_Tile_G_Edge_In_Normal
+  - bgi_Tile_P_Edge_In_LT_Active
+  - img_Attribute_R
+  - bgi_Tile_G_Border_Line_Normal
+  - bgi_Tile_G_Edge_Full_Normal
+  - bgi_Tile_P_Border_Full_Normal
+  - bgi_Tile_G_Edge_In_Active
+  - bgi_Tile_G_Edge_Line_H_Active
+  - bgi_Tile_G_Center_Normal
+  - bgi_Tile_Y_Border_Line_Active
+  - img_Attribute_P
+  - bgi_Tile_B_Edge_Out_Normal
+  - bgi_Tile_B_Edge_Line_V_Active
+  - bgi_Tile_B_Edge_Full_Active
+  - bgi_Tile_R_Edge_Full_Normal
+  - bgi_Tile_G_Border_Full_Active
+  - bgi_Tile_P_Edge_Full_Active
+  - bgi_Tile_Y_Border_Full_Normal
+  - bgi_Tile_G_Edge_Out_Normal
+  - bgi_Tile_P_Edge_Out_Normal
+  - bgi_Tile_R_Edge_Full_Active
+  - bgi_Tile_Y_Edge_Line_H_Normal
+  - bgi_Tile_P_Edge_In_Normal
+  - bgi_Tile_Y_Center_Active
+  - bgi_Tile_Y_Border_Line_Normal
+  - bgi_Tile_Y_Edge_Out_Normal
+  - bgi_Tile_P_Edge_Line_H_Normal
+  - bgi_Tile_B_Edge_In_LT_Active
+  - img_Attribute_B
+  - bgi_Tile_B_Center_Normal
+  - bgi_Tile_B_Edge_In_LT_Normal
+  - bgi_Tile_G_Edge_Line_V_Active
+  - bgi_Tile_Y_Edge_Full_Normal
+  - bgi_Tile_R_Edge_In_LT_Normal
+  - bgi_Tile_R_Border_Full_Active
+  - bgi_Tile_B_Border_Line_Normal
+  - bgi_Tile_B_Edge_In_Normal
+  - bgi_Tile_G_Border_Line_Active
+  - bgi_Tile_P_Edge_Full_Normal
+  - bgi_Tile_R_Edge_Line_V_Active
+  - bgi_Tile_R_Edge_Out_Normal
+  - bgi_Tile_Y_Border_Full_Active
+  - bgi_Tile_P_Center_Active
+  - bgi_Tile_R_Edge_In_Normal
+  - bgi_Tile_R_Center_Normal
+  - bgi_Tile_B_Center_Active
+  - bgi_Tile_B_Edge_Line_V_Normal
+  - bgi_Tile_Y_Edge_Line_V_Normal
+  - bgi_Tile_G_Edge_Line_V_Normal
+  - bgi_Tile_Y_Edge_Out_Active
+  - bgi_Tile_Y_Edge_In_LT_Active
+  - bgi_Tile_P_Edge_Line_V_Normal
+  - bgi_Tile_R_Edge_Line_V_Normal
+  - bgi_Tile_Y_Edge_Full_Active
+  - bgi_Tile_R_Edge_Line_H_Normal
+  - bgi_Tile_G_Edge_In_LT_Active
+  - bgi_Tile_Y_Center_Normal
+  - bgi_Tile_R_Border_Line_Active
+  - bgi_Tile_G_Edge_Line_H_Normal
+  - bgi_Tile_B_Edge_In_Active
+  - bgi_Tile_R_Edge_Out_Active
+  - bgi_Tile_B_Edge_Line_H_Active
+  - bgi_Tile_G_Center_Active
+  - bgi_Tile_Y_Edge_Line_H_Active
+  - bgi_Tile_R_Border_Full_Normal
+  - bgi_Tile_R_Edge_In_LT_Active
+  - bgi_Tile_P_Edge_In_Active
+  - bgi_Tile_R_Border_Line_Normal
+  - bgi_Tile_G_Edge_Out_Active
+  - bgi_Tile_Y_Edge_In_Normal
+  - bgi_Tile_B_Edge_Out_Active
+  - bgi_Tile_P_Border_Line_Active
+  - bgi_Tile_B_Border_Full_Active
+  - img_Attribute_Y
+  - bgi_Tile_Y_Edge_Line_V_Active
+  - bgi_Tile_B_Edge_Full_Normal
+  - bgi_Tile_P_Center_Normal
+  - bgi_Tile_G_Border_Full_Normal
+  - bgi_Tile_P_Border_Full_Active
+  - bgi_Tile_P_Edge_Out_Active
+  - bgi_Tile_R_Center_Active
+  m_Tag: atl_CrystalPanel
+  m_IsVariant: 0
