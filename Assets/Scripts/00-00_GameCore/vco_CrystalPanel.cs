@@ -50,31 +50,33 @@ public class vco_CrystalPanel : MonoBehaviour
     public BoxCollider2D Cld_TileCollider;
     public vco_CheckWall Hto_CheckWall;
 
-    private struct Struct_TileParts
+    private class classTileParts
     {
+        private vco_CrystalPanel myParents;
         private SpriteRenderer mySpriteRenderer;
         private SpriteAtlas myAtlas;
-        private string partsType;
-        private string partsSpecialType;
+        private string myPartsType;
+        private string myPartsSpecialType;
 
-        public Struct_TileParts(SpriteRenderer _catchSpr, SpriteAtlas _ctachAtlas, string _catchType, string _catchSpecial = "")
+        public classTileParts(vco_CrystalPanel _catchVco, SpriteRenderer _catchSpr, SpriteAtlas _ctachAtlas, string _catchType, string _catchSpecial = "")
         {
+            myParents = _catchVco;
             mySpriteRenderer = _catchSpr;
             myAtlas = _ctachAtlas;
-            partsType = _catchType;
-            partsSpecialType = _catchSpecial;
+            myPartsType = _catchType;
+            myPartsSpecialType = _catchSpecial;
         }
 
         public void SetTileImage(string _imgType = "")
         {
             string _currentMode = TILE_DEACTIVE;
 
-            if (isActive)
+            if (myParents.isActive)
             {
                 _currentMode = TILE_ACTIVE;
             }
 
-            string _spritePath = pathTile + this.partsType + _imgType + _currentMode;
+            string _spritePath = myParents.pathTile + this.myPartsType + _imgType + _currentMode;
             mySpriteRenderer.sprite = myAtlas.GetSprite(_spritePath);
         }
 
@@ -94,11 +96,11 @@ public class vco_CrystalPanel : MonoBehaviour
         {
             if (_stateDiagonal == false && _stateVertical == false && _stateHorizon == false)
             {
-                SetTileImage(TILE_SUB_IN + partsSpecialType);
+                SetTileImage(TILE_SUB_IN + myPartsSpecialType);
             }
             else if (_stateDiagonal == true && _stateVertical == false && _stateHorizon == false)
             {
-                SetTileImage(TILE_SUB_IN + partsSpecialType);
+                SetTileImage(TILE_SUB_IN + myPartsSpecialType);
             }
             else if (_stateDiagonal == true && _stateVertical == true && _stateHorizon == true)
             {
@@ -127,13 +129,13 @@ public class vco_CrystalPanel : MonoBehaviour
         }
     }
 
-    private Struct_TileParts Tile_NW, Tile_NN, Tile_NE, Tile_WW, Tile_CC, Tile_EE, Tile_SW, Tile_SS, Tile_SE;
+    private classTileParts Tile_NW, Tile_NN, Tile_NE, Tile_WW, Tile_CC, Tile_EE, Tile_SW, Tile_SS, Tile_SE;
 
     public int CurrentIndex;
     public int CurrentCellRow;
     public int CurrentCellCol;
     public int CurrentAttribute;
-    public int CurrentPanelGroup;
+    public int CurrentGroup;
     public bool isSameAttr_NW;
     public bool isSameAttr_NN;
     public bool isSameAttr_NE;
@@ -142,24 +144,23 @@ public class vco_CrystalPanel : MonoBehaviour
     public bool isSameAttr_SW;
     public bool isSameAttr_SS;
     public bool isSameAttr_SE;
-    private static string pathAttr;
-    private static string pathTile;
+    public bool isActive;
 
-    private static bool isActive;
-    public bool IsActive { get => isActive; set => isActive = value; }
+    private string pathAttr;
+    private string pathTile;
 
     // Start is called before the first frame update
     void Start()
     {
-        Tile_NW = new Struct_TileParts(Spr_Tile_NW, Atlas_Panels, TILE_TYPE_EDGE, "_LT");
-        Tile_NN = new Struct_TileParts(Spr_Tile_NN, Atlas_Panels, TILE_TYPE_BORDER);
-        Tile_NE = new Struct_TileParts(Spr_Tile_NE, Atlas_Panels, TILE_TYPE_EDGE);
-        Tile_WW = new Struct_TileParts(Spr_Tile_WW, Atlas_Panels, TILE_TYPE_BORDER);
-        Tile_CC = new Struct_TileParts(Spr_Tile_CC, Atlas_Panels, TILE_TYPE_CENTER);
-        Tile_EE = new Struct_TileParts(Spr_Tile_EE, Atlas_Panels, TILE_TYPE_BORDER);
-        Tile_SW = new Struct_TileParts(Spr_Tile_SW, Atlas_Panels, TILE_TYPE_EDGE);
-        Tile_SS = new Struct_TileParts(Spr_Tile_SS, Atlas_Panels, TILE_TYPE_BORDER);
-        Tile_SE = new Struct_TileParts(Spr_Tile_SE, Atlas_Panels, TILE_TYPE_EDGE);
+        Tile_NW = new classTileParts(this, Spr_Tile_NW, Atlas_Panels, TILE_TYPE_EDGE, "_LT");
+        Tile_NN = new classTileParts(this, Spr_Tile_NN, Atlas_Panels, TILE_TYPE_BORDER);
+        Tile_NE = new classTileParts(this, Spr_Tile_NE, Atlas_Panels, TILE_TYPE_EDGE);
+        Tile_WW = new classTileParts(this, Spr_Tile_WW, Atlas_Panels, TILE_TYPE_BORDER);
+        Tile_CC = new classTileParts(this, Spr_Tile_CC, Atlas_Panels, TILE_TYPE_CENTER);
+        Tile_EE = new classTileParts(this, Spr_Tile_EE, Atlas_Panels, TILE_TYPE_BORDER);
+        Tile_SW = new classTileParts(this, Spr_Tile_SW, Atlas_Panels, TILE_TYPE_EDGE);
+        Tile_SS = new classTileParts(this, Spr_Tile_SS, Atlas_Panels, TILE_TYPE_BORDER);
+        Tile_SE = new classTileParts(this, Spr_Tile_SE, Atlas_Panels, TILE_TYPE_EDGE);
 
         myManager.CatchCallCrystalPanel(this, CALL_READY_START);
     }
@@ -216,16 +217,17 @@ public class vco_CrystalPanel : MonoBehaviour
         myManager.CatchCallCrystalPanel(this, _callType);
     }
 
-    public void SetSurroundings(bool[] _setArray)
+    public void SetSurroundings(List<bool> _listState)
     {
-        isSameAttr_NW = _setArray[0];
-        isSameAttr_NN = _setArray[1];
-        isSameAttr_NE = _setArray[2];
-        isSameAttr_WW = _setArray[3];
-        isSameAttr_EE = _setArray[4];
-        isSameAttr_SW = _setArray[5];
-        isSameAttr_SS = _setArray[6];
-        isSameAttr_SE = _setArray[7];
+        isSameAttr_NW = _listState[0];
+        isSameAttr_NN = _listState[1];
+        isSameAttr_NE = _listState[2];
+        isSameAttr_WW = _listState[3];
+        isSameAttr_EE = _listState[4];
+        isSameAttr_SW = _listState[5];
+        isSameAttr_SS = _listState[6];
+        isSameAttr_SE = _listState[7];
+
         SetContourImage(false);
     }
 
@@ -238,7 +240,7 @@ public class vco_CrystalPanel : MonoBehaviour
 
     public void Fall()
     {
-        CurrentPanelGroup = -1;
+        CurrentGroup = -1;
 
         tag = TAG_PANEL;
         Rbd_TileRigid.bodyType = RigidbodyType2D.Dynamic;
@@ -272,6 +274,16 @@ public class vco_CrystalPanel : MonoBehaviour
 
         transform.localPosition = myManager.ListRegularPosition[CurrentIndex];
         myManager.CatchCallCrystalPanel(this, CALL_COMPLETE_FALL);
+    }
+
+    public void ReadyCrystalPanel()
+    {
+        string _debugText = "";
+        _debugText += this.name + "\n";
+        _debugText += "[" + this.CurrentCellRow + "," + this.CurrentCellCol + "]\n";
+        _debugText += this.CurrentGroup;
+
+        Txt_DebugText.text = _debugText;
     }
 
     // Update is called once per frame
