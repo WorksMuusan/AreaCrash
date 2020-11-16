@@ -2,34 +2,36 @@
 
 public class vco_CheckWall : MonoBehaviour
 {
-    private bool sw_TouchWall = false;
-    private bool sw_TouchWallEnter, sw_TouchWallStay, sw_TouchWallExit;
+    private bool isTouchWall = false;
+    private bool isTouchWallEnter, isTouchWallStay, isTouchWallExit;
+
+    public bool IsTouchWall { get => ReturnTouchWall(); set => isTouchWall = value; }
 
     //接地判定を返すメソッド
     //物理判定の更新毎に呼ぶ必要がある
-    public bool Sw_TouchWall()
+    public bool ReturnTouchWall()
     {
-        if (sw_TouchWallEnter || sw_TouchWallStay)
+        if (isTouchWallEnter || isTouchWallStay)
         {
-            sw_TouchWall = true;
+            isTouchWall = true;
         }
-        else if (sw_TouchWallExit)
+        else if (isTouchWallExit)
         {
-            sw_TouchWall = false;
+            isTouchWall = false;
         }
 
-        sw_TouchWallEnter = false;
-        sw_TouchWallStay = false;
-        sw_TouchWallExit = false;
+        isTouchWallEnter = false;
+        isTouchWallStay = false;
+        isTouchWallExit = false;
 
-        return sw_TouchWall;
+        return isTouchWall;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == vco_CrystalPanel.TAG_WALL)
         {
-            sw_TouchWallEnter = true;
+            isTouchWallEnter = true;
         }
     }
 
@@ -37,7 +39,7 @@ public class vco_CheckWall : MonoBehaviour
     {
         if (collision.tag == vco_CrystalPanel.TAG_WALL)
         {
-            sw_TouchWallStay = true;
+            isTouchWallStay = true;
         }
     }
 
@@ -45,7 +47,7 @@ public class vco_CheckWall : MonoBehaviour
     {
         if (collision.tag == vco_CrystalPanel.TAG_WALL)
         {
-            sw_TouchWallExit = true;
+            isTouchWallExit = true;
         }
     }
 }

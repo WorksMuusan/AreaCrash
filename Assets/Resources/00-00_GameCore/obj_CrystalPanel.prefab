@@ -988,7 +988,6 @@ GameObject:
   - component: {fileID: 8009938905733713093}
   - component: {fileID: 8229866535467121421}
   - component: {fileID: 5813107517301544269}
-  - component: {fileID: 3555609697597748495}
   m_Layer: 0
   m_Name: obj_CrystalPanel
   m_TagString: Panel
@@ -1063,7 +1062,7 @@ MonoBehaviour:
   isSameAttr_SW: 0
   isSameAttr_SS: 0
   isSameAttr_SE: 0
-  isActive: 0
+  isEnabledControlEvent: 0
 --- !u!50 &8229866535467121421
 Rigidbody2D:
   serializedVersion: 4
@@ -1109,33 +1108,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 1
   serializedVersion: 2
-  m_Size: {x: 120, y: 130}
+  m_Size: {x: 128, y: 130}
   m_EdgeRadius: 10
---- !u!114 &3555609697597748495
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8009938905733713091}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls: []
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls: []
-  - eventID: 3
-    callback:
-      m_PersistentCalls:
-        m_Calls: []
 --- !u!1 &8009938905997987823
 GameObject:
   m_ObjectHideFlags: 0
@@ -1161,7 +1135,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8009938905997987823}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8009938905733713090}

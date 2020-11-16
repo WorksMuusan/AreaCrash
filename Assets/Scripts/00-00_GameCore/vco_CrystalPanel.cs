@@ -14,6 +14,7 @@ public class vco_CrystalPanel : MonoBehaviour
     public const string CALL_READY_START = "rs";
     public const string CALL_READY_FALL = "rf";
     public const string CALL_COMPLETE_FALL = "cf";
+    public const string CALL_COMPLETE_CRASH = "ca";
 
     private static readonly string PATH_ATTR_NAME = "img_Attribute_";
     private static readonly string PATH_TILE_NAME = "bgi_Tile_";
@@ -26,8 +27,8 @@ public class vco_CrystalPanel : MonoBehaviour
     private static readonly string TILE_SUB_LINE = "_Line";
     private static readonly string TILE_SUB_LINE_V = "_Line_V";
     private static readonly string TILE_SUB_LINE_H = "_Line_H";
-    private static readonly string TILE_ACTIVE = "_Active";
-    private static readonly string TILE_DEACTIVE = "_Normal";
+    private static readonly string TILE_CANDIDATE = "_Active";
+    private static readonly string TILE_NORMAL = "_Normal";
     private readonly List<string> Lis_attrColor = new List<string>() { "R", "G", "B", "Y", "P" };
 
     public vco_CrystalStage myManager;
@@ -69,11 +70,11 @@ public class vco_CrystalPanel : MonoBehaviour
 
         public void SetTileImage(string _imgType = "")
         {
-            string _currentMode = TILE_DEACTIVE;
+            string _currentMode = TILE_NORMAL;
 
-            if (myParents.isActive)
+            if (myParents.IsCandidate)
             {
-                _currentMode = TILE_ACTIVE;
+                _currentMode = TILE_CANDIDATE;
             }
 
             string _spritePath = myParents.pathTile + this.myPartsType + _imgType + _currentMode;
@@ -144,10 +145,14 @@ public class vco_CrystalPanel : MonoBehaviour
     public bool isSameAttr_SW;
     public bool isSameAttr_SS;
     public bool isSameAttr_SE;
-    public bool isActive;
+    public bool isEnabledControlEvent = false;
+
+    private bool isCandidate;
+    public bool IsCandidate { get => isCandidate; set => ChangeStateCandidate(value); }
 
     private string pathAttr;
     private string pathTile;
+
 
     // Start is called before the first frame update
     void Start()
@@ -167,6 +172,8 @@ public class vco_CrystalPanel : MonoBehaviour
 
     public void SetAttribute(int _catchAttribute)
     {
+        this.gameObject.SetActive(true);
+
         CurrentAttribute = _catchAttribute;
       
         pathAttr = PATH_ATTR_NAME + Lis_attrColor[CurrentAttribute];
@@ -248,13 +255,16 @@ public class vco_CrystalPanel : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Hto_CheckWall.Sw_TouchWall())
+        if (tag == TAG_PANEL)
         {
-            Fixed_CrystalPanel();
+            if (Hto_CheckWall.IsTouchWall)
+            {
+                FixedCrystalPanel();
+            }
         }
     }
 
-    public void Fixed_CrystalPanel()
+    public void FixedCrystalPanel()
     {
         tag = TAG_WALL;
         Rbd_TileRigid.bodyType = RigidbodyType2D.Static;
@@ -272,7 +282,7 @@ public class vco_CrystalPanel : MonoBehaviour
         this.CurrentIndex = _tempIndex;
         this.name = NAME_HEAD + CurrentIndex;
 
-        transform.localPosition = myManager.ListRegularPosition[CurrentIndex];
+        transform.localPosition = myManager.ListRegularPositions[CurrentIndex];
         myManager.CatchCallCrystalPanel(this, CALL_COMPLETE_FALL);
     }
 
@@ -284,11 +294,39 @@ public class vco_CrystalPanel : MonoBehaviour
         _debugText += this.CurrentGroup;
 
         Txt_DebugText.text = _debugText;
+
+        isEnabledControlEvent = true;
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnMouseEnter()
     {
+        if (isEnabledControlEvent)
+            myManager.PutInCandidateCrash(CurrentGroup);
+    }
 
+    public void OnMouseExit()
+    {
+        if (isEnabledControlEvent)
+            myManager.RemoveCandidateCrash(CurrentGroup);
+    }
+
+    public void OnMouseUp()
+    {
+        if (isEnabledControlEvent)
+            myManager.StartCrashCrystalPanels();
+    }
+
+    private void ChangeStateCandidate(bool _catchBool)
+    {
+        this.isCandidate = _catchBool;
+        SetContourImage(false);
+    }
+
+    public void StartAnimationCrash()
+    {
+        this.isCandidate = false;
+        gameObject.SetActive(false);
+        myManager.CatchCallCrystalPanel(this, CALL_COMPLETE_CRASH);
     }
 }

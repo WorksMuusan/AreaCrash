@@ -11,15 +11,21 @@ public class vco_CrystalStage : MonoBehaviour
     public static readonly int MAX_PANEL_COL = 6;
     public static readonly int MAX_PANEL_ALL = MAX_PANEL_ROW * MAX_PANEL_COL;
     public static readonly int COUNT_ATTRIBUTE = 5;
-    public List<Vector3Int> ListRegularPosition = new List<Vector3Int>();
+    public List<Vector3Int> ListRegularPositions = new List<Vector3Int>();
 
     public GameObject Pfb_CrystalPanel;
     public SpriteAtlas Atlas_Panels;
 
     private List<Vector2Int> listCheckDirection = new List<Vector2Int>();
-    private List<vco_CrystalPanel> listFixedVcoPanel = new List<vco_CrystalPanel>();
+
+    private List<vco_CrystalPanel> listFixedPanelVcos = new List<vco_CrystalPanel>();
+    private List<vco_CrystalPanel> listRebornPanelVcos = new List<vco_CrystalPanel>();
+    private List<vco_CrystalPanel> listFallPanelVcos = new List<vco_CrystalPanel>();
+
     private static int countFallCrystalPanel = 0;
     private static int countGroupCrystalPanel = 0;
+    private static int countCrashAnimationPanel = 0;
+    private static int currentCandidateGroup = MAX_PANEL_ALL + 1;
 
     private int[,] arrayAttributeBoard;
 
@@ -39,7 +45,7 @@ public class vco_CrystalStage : MonoBehaviour
 
     public void InitializedCrystalStage()
     {
-        listFixedVcoPanel = new List<vco_CrystalPanel>();
+        listFixedPanelVcos = new List<vco_CrystalPanel>();
         SetRegularPosition();
         CreateCrystalPanel();
     }
@@ -55,14 +61,14 @@ public class vco_CrystalStage : MonoBehaviour
                 _appPosition.x = (_countCol * vco_CrystalPanel.PANEL_W) + (vco_CrystalPanel.PANEL_W / 2);
                 _appPosition.y = ((_countRow * vco_CrystalPanel.PANEL_H) + (vco_CrystalPanel.PANEL_H / 2)) * -1;
                 _appPosition.z = 1;
-                ListRegularPosition.Add(_appPosition);
+                ListRegularPositions.Add(_appPosition);
             }
         }
     }
 
     private void CreateCrystalPanel()
     {
-        foreach (Vector3Int _createPosition in ListRegularPosition)
+        foreach (Vector3Int _createPosition in ListRegularPositions)
         {
             GameObject _newPanel = Instantiate(Pfb_CrystalPanel);
             _newPanel.transform.parent = transform;
@@ -79,35 +85,47 @@ public class vco_CrystalStage : MonoBehaviour
         switch (_callType)
         {
             case vco_CrystalPanel.CALL_READY_START:
-                listFixedVcoPanel.Add(_targetPanelVco);
+                listFixedPanelVcos.Add(_targetPanelVco);
 
-                if (listFixedVcoPanel.Count == MAX_PANEL_ALL)
+                if (listFixedPanelVcos.Count == MAX_PANEL_ALL)
                 {
-                    PullUpCrystalPanel(listFixedVcoPanel);
+                    arrayAttributeBoard = new int[MAX_PANEL_ROW, MAX_PANEL_COL];
+                    PullUpCrystalPanel(listFixedPanelVcos);
                 }
 
                 break;
 
             case vco_CrystalPanel.CALL_READY_FALL:
-
                 countFallCrystalPanel++;
                 _targetPanelVco.Fall();
 
                 break;
 
             case vco_CrystalPanel.CALL_COMPLETE_FALL:
-
                 int _setRow = _targetPanelVco.CurrentCellRow;
                 int _setCol = _targetPanelVco.CurrentCellCol;
                 arrayAttributeBoard[_setRow, _setCol] = _targetPanelVco.CurrentAttribute;
 
                 countFallCrystalPanel--;
 
+                Debug.Log(countFallCrystalPanel + " : " + _targetPanelVco.name);
+
                 if (countFallCrystalPanel == 0)
                 {
-                    listFixedVcoPanel.OrderBy(vco => vco.CurrentIndex);
+                    listFixedPanelVcos.OrderBy(vco => vco.CurrentIndex);
                     ConnectCrystalPanel();
                     CheckSameGroup();
+                }
+
+                break;
+
+            case vco_CrystalPanel.CALL_COMPLETE_CRASH:
+                countCrashAnimationPanel--;
+
+                if (countCrashAnimationPanel == 0)
+                {
+                    listFallPanelVcos.ForEach(vco => vco.Fall());
+                    PullUpCrystalPanel(listRebornPanelVcos);
                 }
 
                 break;
@@ -118,11 +136,9 @@ public class vco_CrystalStage : MonoBehaviour
 
     }
 
-    private void PullUpCrystalPanel(List<vco_CrystalPanel> _lisTargetVco)
+    private void PullUpCrystalPanel(List<vco_CrystalPanel> _listTargetVcos)
     {
-        arrayAttributeBoard = new int[MAX_PANEL_ROW, MAX_PANEL_COL];
-
-        foreach (var _targetPanelVco in _lisTargetVco)
+        foreach (var _targetPanelVco in _listTargetVcos)
         {
             _targetPanelVco.WaitFall(STAGE_H);
             _targetPanelVco.SetAttribute(Random.Range(0, COUNT_ATTRIBUTE));
@@ -131,7 +147,7 @@ public class vco_CrystalStage : MonoBehaviour
 
     private void ConnectCrystalPanel()
     {
-        foreach (var _targetPanelVco in listFixedVcoPanel)
+        foreach (var _targetPanelVco in listFixedPanelVcos)
         {
             int _trgRow = _targetPanelVco.CurrentCellRow;
             int _trgCol = _targetPanelVco.CurrentCellCol;
@@ -178,7 +194,7 @@ public class vco_CrystalStage : MonoBehaviour
         List<int> _listNextPanel;
         List<int> _listSameGroup;
 
-        foreach (var _targetPanelVco in listFixedVcoPanel)
+        foreach (var _targetPanelVco in listFixedPanelVcos)
         {
             _listNextPanel = new List<int>();
             _listSameGroup = new List<int>();
@@ -242,7 +258,7 @@ public class vco_CrystalStage : MonoBehaviour
                         if (_listNextPanel.Count > 0)
                         {
                             int _nextCellNumber = _listNextPanel[0];
-                            _checkPanelVco = listFixedVcoPanel[_nextCellNumber];
+                            _checkPanelVco = listFixedPanelVcos[_nextCellNumber];
                             _listNextPanel.RemoveAt(0);
                             _isContinue = true;
                         }
@@ -256,6 +272,56 @@ public class vco_CrystalStage : MonoBehaviour
 
             _targetPanelVco.ReadyCrystalPanel();
         }
+    }
+
+    public void PutInCandidateCrash(int _targetGroupe)
+    {
+        currentCandidateGroup = _targetGroupe;
+
+        var _listPutInTargets = listFixedPanelVcos.Where(vco => vco.CurrentGroup == currentCandidateGroup);
+
+        foreach (var _targetPanelVco in _listPutInTargets)
+        {
+            _targetPanelVco.IsCandidate = true;
+        }
+    }
+
+    public void RemoveCandidateCrash(int _targetGroupe)
+    {
+        currentCandidateGroup = MAX_PANEL_ALL + 1;
+
+        var _listRemoveTargets = listFixedPanelVcos.Where(vco => vco.CurrentGroup == _targetGroupe);
+
+        foreach (var _targetPanelVco in _listRemoveTargets)
+        {
+            _targetPanelVco.IsCandidate = false;
+        }
+    }
+
+    public void StartCrashCrystalPanels()
+    {
+        listFixedPanelVcos.ForEach(vco => vco.isEnabledControlEvent = false);
+
+        arrayAttributeBoard = new int[MAX_PANEL_ROW, MAX_PANEL_COL];
+        countCrashAnimationPanel = 0;
+
+        listRebornPanelVcos = new List<vco_CrystalPanel>();
+        listFallPanelVcos = new List<vco_CrystalPanel>();
+
+        foreach (var _sortingTargetPanelVco in listFixedPanelVcos)
+        {
+            if(_sortingTargetPanelVco.CurrentGroup == currentCandidateGroup)
+            {
+                countCrashAnimationPanel++;
+                listRebornPanelVcos.Add(_sortingTargetPanelVco);
+            }
+            else
+            {
+                listFallPanelVcos.Add(_sortingTargetPanelVco);
+            }
+        }
+
+        listRebornPanelVcos.ForEach(vco => vco.StartAnimationCrash());
     }
 
     // Update is called once per frame

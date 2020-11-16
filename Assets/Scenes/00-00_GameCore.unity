@@ -166,11 +166,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a5f5a71584ad44beb05fab3bb5881be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ListRegularPosition: []
   Pfb_CrystalPanel: {fileID: 8009938905733713091, guid: cdfce5519e86d42658ee9d2ccbf22b00,
     type: 3}
   Atlas_Panels: {fileID: 4343727234628468602, guid: 85e7d531cf9fc4f1cae1db503ed69789,
     type: 2}
-  Lis_regularPosition: []
 --- !u!1 &217156946
 GameObject:
   m_ObjectHideFlags: 0
